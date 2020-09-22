@@ -185,7 +185,6 @@ function pasteBoard(str)
 			if fX~=1 then
 				return
 			else
-				fY=fY+1
 				break
 			end
 		end
