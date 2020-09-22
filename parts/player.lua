@@ -2451,11 +2451,11 @@ do--player.drop(P)--Place piece
 				local t=ENV.mission[P.curMission]
 				local success
 				if t<5 then
-					if C.row==t then
+					if C.row==t and not C.special then
 						success=true
 					end
 				elseif t<9 then
-					if C.row==t%10 and C.spin then
+					if C.row==t-4 and C.spin then
 						success=true
 					end
 				elseif t==9 then
