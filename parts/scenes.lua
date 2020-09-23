@@ -882,10 +882,12 @@ do--main
 		modeEnv={}
 		--Create demo player
 		destroyPlayers()
+		game.frame=0
 		PLY.newDemoPlayer(1,900,35,1.1)
 	end
 
 	function Tmr.main(dt)
+		game.frame=game.frame+1
 		players[1]:update(dt)
 	end
 
