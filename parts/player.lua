@@ -1210,7 +1210,7 @@ end
 local function applyGameEnv(P)--Finish gameEnv processing
 	local ENV=P.gameEnv
 
-	if ENV.drop==0 then P._20G=true end
+	P._20G=ENV.drop==0
 	P.dropDelay=ENV.drop
 	P.lockDelay=ENV.lock
 
@@ -3062,21 +3062,13 @@ end
 function PLY.newDemoPlayer(id,x,y,size)
 	local P=newEmptyPlayer(id,x,y,size)
 
-	-- rewrite draw arguments
+	-- rewrite some args
 	P.small=false
-	P.keyRec=false
 	P.centerX,P.centerY=P.x+300*P.size,P.y+600*P.size
 	P.absFieldX=P.x+150*P.size
 	P.absFieldY=P.y+60*P.size
 	P.draw=Pdraw_demo
-	P.update=Pupdate_alive
-
 	P.control=true
-
-	P.atker={}P.strength=0
-
-	P.field,P.visTime={},{}
-	P.atkBuffer={sum=0}
 	P.gameEnv={
 		drop=1e99,lock=1e99,
 		wait=10,fall=20,
@@ -3118,14 +3110,7 @@ function PLY.newDemoPlayer(id,x,y,size)
 		skin=setting.skin,
 	}
 	applyGameEnv(P)
-
-	P.dropDelay,P.lockDelay=1e99,1e99
-	P.showTime=1e99
-	P.keepVisible=true
-
-	--Always use "bag"
-	freshPrepare.bag(P)
-	P.newNext=freshMethod.bag
+	prepareSequence(P)
 
 	P.human=false
 	loadAI(P,{
@@ -3135,7 +3120,7 @@ function PLY.newDemoPlayer(id,x,y,size)
 		delay=3,
 		delta=3,
 		bag="bag",
-		node=80000,
+		node=100000,
 	})
 
 	P:popNext()
