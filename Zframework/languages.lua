@@ -57,6 +57,8 @@ local langList={
 		unlockSavingError="解锁保存失败:",
 		recSavingError="纪录保存失败:",
 		switchSpawnSFX="请开启方块出生音效",
+		getRank="本局评级:",
+		ranks={"D","C","B","A","S"},
 
 		needRestart="重新开始以生效",
 		copySuccess="已复制到剪切板",
@@ -583,6 +585,8 @@ local langList={
 		unlockSavingError="解锁保存失败:",
 		recSavingError="纪录保存失败:",
 		switchSpawnSFX="请开启方块出生音效",
+		getRank="本局评级:",
+		ranks={"D","C","B","A","S"},
 
 		needRestart="重新开始以生效",
 		copySuccess="已复制到剪切板",
@@ -1107,6 +1111,8 @@ local langList={
 		unlockSavingError="Failed to save unlocked content:",
 		recSavingError="Failed to save record:",
 		switchSpawnSFX="Switch on spawn SFX to play",
+		getRank="Rank: ",
+		ranks={"D","C","B","A","S"},
 
 		needRestart="Effective after restart",
 		copySuccess="Copied successfully",
@@ -1621,6 +1627,8 @@ local langList={
 		unlockSavingError="x!:",
 		recSavingError="x!:",
 		switchSpawnSFX="Switch on spawn SFX to play",
+		getRank="#:",
+		ranks={"D","C","B","A","S"},
 
 		needRestart="!!*#R#*!!",
 		copySuccess="~$~",
@@ -2129,6 +2137,8 @@ local langList={
 		unlockSavingError="解锁保存失败:",
 		recSavingError="纪录保存失败:",
 		switchSpawnSFX="请开启方块出生音效",
+		getRank="本局评级:",
+		ranks={"D","C","B","A","S"},
 
 		needRestart="重新开始以生效",
 		copySuccess="已复制到剪切板",

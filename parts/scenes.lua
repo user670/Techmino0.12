@@ -1136,7 +1136,7 @@ do--mode
 		gc.setLineWidth(8)
 		gc.setColor(1,1,1,.2)
 		for name,M in next,Modes do
-			if R[name]then
+			if R[name]and M.unlock then
 				for _=1,#M.unlock do
 					local m=Modes[M.unlock[_]]
 					gc.line(M.x,M.y,m.x,m.y)

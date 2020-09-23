@@ -2577,6 +2577,7 @@ local function gameOver()--Save record
 	if R then
 		local P=players[1]
 		R=R(P)--New rank
+		LOG.print(text.getRank..text.ranks[R],color.green)
 		if R then
 			local r=modeRanks[M.name]--Old rank
 			local _
@@ -2584,12 +2585,14 @@ local function gameOver()--Save record
 				modeRanks[M.name]=R
 				_=true
 			end
-			for i=1,#M.unlock do
-				local m=M.unlock[i]
-				local n=Modes[m].name
-				if not modeRanks[n]then
-					modeRanks[n]=Modes[m].score and 0 or 6
-					_=true
+			if M.unlock then
+				for i=1,#M.unlock do
+					local m=M.unlock[i]
+					local n=Modes[m].name
+					if not modeRanks[n]then
+						modeRanks[n]=Modes[m].score and 0 or 6
+						_=true
+					end
 				end
 			end
 			if _ then
