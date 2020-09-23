@@ -83,4 +83,6 @@ return{
 	{name="sprintPenta",					x=200,		y=-150,		size=40,shape=2,icon="sprint",		},
 	{name="sprintMPH",						x=200,		y=-300,		size=40,shape=2,icon="sprint",		},
 
+	{name="custom_clear",					x=0,		y=2600,		size=45,shape=3,icon="custom",		},
+	{name="custom_puzzle",					x=0,		y=2600,		size=45,shape=3,icon="puzzle",		},
 }

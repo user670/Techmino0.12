@@ -142,17 +142,17 @@ local Widgets={
 	},
 	main={
 		newButton({name="play",		x=150,y=280,w=200,h=160,color="lRed",	font=55,code=goScene("mode")}),
-		newButton({name="setting",	x=370,y=280,w=200,h=160,color="lBlue",	font=45,code=goScene("setting_game")}),
-		newButton({name="music",	x=590,y=280,w=200,h=160,color="lPurple",font=32,code=goScene("music")}),
+		newButton({name="custom",	x=370,y=280,w=200,h=160,color="lOrange",font=43,code=goScene("custom_basic"),hide=function()return not modeRanks.marathon_normal end}),
+		newButton({name="qplay",	x=590,y=280,w=200,h=160,color="lGreen",	font=45,code=function()SCN.push()loadGame(stat.lastPlay,true)end}),
 		newButton({name="help",		x=150,y=460,w=200,h=160,color="lYellow",font=50,code=goScene("help")}),
 		newButton({name="stat",		x=370,y=460,w=200,h=160,color="lCyan",	font=43,code=goScene("stat")}),
-		newButton({name="qplay",	x=590,y=460,w=200,h=160,color="lOrange",font=43,code=function()SCN.push()loadGame(stat.lastPlay,true)end}),
-		newButton({name="lang",		x=150,y=610,w=160,h=100,color="lGreen",	font=45,code=goScene("setting_lang")}),
-		newButton({name="minigame",	x=370,y=610,w=80,		color="black",			code=goScene("minigame")}),
-		newButton({name="quit",		x=590,y=610,w=160,h=100,color="lGrey",	font=45,code=function()VOC.play("bye")SCN.swapTo("quit","slowFade")end}),
+		newButton({name="setting",	x=590,y=460,w=200,h=160,color="lBlue",	font=45,code=goScene("setting_game")}),
+		newButton({name="lang",		x=150,y=600,w=200,h=80,color="lGreen",	font=45,code=goScene("setting_lang")}),
+		newButton({name="music",	x=370,y=600,w=200,h=80,color="lPurple",	font=30,code=goScene("music")}),
+		newButton({name="quit",		x=590,y=600,w=200,h=80,color="lGrey",	font=45,code=function()VOC.play("bye")SCN.swapTo("quit","slowFade")end}),
+		newButton({name="minigame",	x=780,y=600,w=80,		color="black",			code=goScene("minigame")}),
 	},
 	mode={
-		newButton({name="setting",	x=1100,y=540,w=240,h=90,color="lGreen",	font=40,code=pressKey("e"),hide=function()return mapCam.sel~="custom_clear" and mapCam.sel~="custom_puzzle"end}),
 		newButton({name="start",	x=1040,y=655,w=180,h=80,color="white",	font=40,code=pressKey("return"),hide=function()return not mapCam.sel end}),
 		newButton({name="back",		x=1200,y=655,w=120,h=80,color="white",	font=40,code=BACK}),
 	},
@@ -187,9 +187,9 @@ local Widgets={
 		newSelector({name="bg",		x=1140,	y=460,	w=220,color="yellow",	list=CUSlist.bg,	disp=CUSval("bg"),		code=function(i)customEnv.bg=i BG.set(i)end}),
 		newSelector({name="bgm",	x=1140,	y=540,	w=220,color="yellow",	list=CUSlist.bgm,	disp=CUSval("bgm"),		code=function(i)customEnv.bgm=i BGM.play(i)end}),
 
-		--Copy/Paste Quest
-		newButton({name="copy",		x=560,	y=640,	w=300,h=100,	color="lRed",	font=25,code=pressKey("cC")}),
-		newButton({name="paste",	x=870,	y=640,	w=300,h=100,	color="lBlue",	font=25,code=pressKey("cV")}),
+		--Start
+		newButton({name="clear",	x=560,	y=640,	w=300,h=100,	color="lYellow",	font=40,code=pressKey("return")}),
+		newButton({name="puzzle",	x=870,	y=640,	w=300,h=100,	color="lMagenta",	font=40,code=pressKey("return2")}),
 
 		newButton({name="mission",	x=900,	y=60,	w=220,h=80,		color="lBlue",	font=25,code=swapScene("custom_mission","swipeR")}),
 		newButton({name="rule",		x=1140,	y=60,	w=220,h=80,		color="lBlue",	font=25,code=swapScene("custom_rule","swipeL")}),
@@ -210,6 +210,10 @@ local Widgets={
 		newSelector({name="opponent",	x=1100,	y=160,w=260,color="red",	list=CUSlist.opponent,	disp=CUSval("opponent"),code=CUSsto("opponent")}),
 		newSelector({name="life",		x=1100,	y=260,w=260,color="red",	list=CUSlist.life,		disp=CUSval("life"),	code=CUSsto("life")}),
 		newSelector({name="pushSpeed",	x=1100,	y=360,w=260,color="red",	list=CUSlist.pushSpeed,	disp=CUSval("pushSpeed"),code=CUSsto("pushSpeed")}),
+
+		--Copy/Paste
+		newButton({name="copy",		x=560,	y=640,	w=300,h=100,	color="lRed",	font=25,code=pressKey("cC")}),
+		newButton({name="paste",	x=870,	y=640,	w=300,h=100,	color="lBlue",	font=25,code=pressKey("cV")}),
 
 		newButton({name="basic",	x=900,	y=60,	w=220,h=80,		color="lBlue",	font=25,code=swapScene("custom_basic","swipeR")}),
 		newButton({name="sequence",	x=1140,	y=60,	w=220,h=80,		color="lBlue",	font=25,code=swapScene("custom_seq","swipeL")}),

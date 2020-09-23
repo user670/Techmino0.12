@@ -5,7 +5,6 @@ local langList={
 		marking="游戏作者:MrZ_26\n任何视频/直播不得出现此水印\n任何转述声明无效",
 		holdR="长按以重新开始",
 
-		lang="中文",
 		atkModeName={"随机","徽章","击杀","反击"},
 		royale_remain=function(n)return"剩余 "..n.." 名玩家"end,
 		cmb={nil,"1 Combo","2 Combo","3 Combo","4 Combo","5 Combo","6 Combo","7 Combo","8 Combo","9 Combo","10 Combo!","11 Combo!","12 Combo!","13 Combo!","14 Combo!","15 Combo!","16 Combo!","17 Combo!","18 Combo!","19 Combo!","MEGACMB"},
@@ -162,16 +161,16 @@ local langList={
 		WidgetText={
 			main={
 				play="开始",
-				setting="设置",
-				music="音乐室",
+				custom="自定义",
+				qplay="快速开始",
 				stat="统计信息",
 				help="帮助",
-				qplay="快速开始",
+				setting="设置",
 				lang="言/A",
+				music="音乐室",
 				quit="退出",
 			},
 			mode={
-				setting="参数(E)",
 				start="开始",
 				back="返回",
 			},
@@ -196,8 +195,8 @@ local langList={
 				bg="背景",
 				bgm="音乐",
 
-				copy="复制序列+场地+任务",
-				paste="粘贴序列+场地+任务",
+				clear="开始-消除",
+				puzzle="开始-拼图",
 
 				mission="←任务设置",
 				rule="更多规则(Tab)→",
@@ -217,6 +216,9 @@ local langList={
 				opponent="对手",
 				life="命数",
 				pushSpeed="上涨速度",
+
+				copy="复制序列+场地+任务",
+				paste="粘贴序列+场地+任务",
 
 				basic="←基本规则",
 				sequence="序列设置(Tab)→",
@@ -533,7 +535,6 @@ local langList={
 		marking="游戏作者:MrZ_26\n任何视频/直播不得出现此水印\n任何转述声明无效",
 		holdR="长按以重新开始",
 
-		lang="全中文",
 		atkModeName={"随机","徽章","击杀","反击"},
 		royale_remain=function(n)return"剩余 "..n.." 名玩家"end,
 		cmb={nil,"1连击","2连击","3连击","4连击","5连击","6连击","7连击","8连击","9连击","10连击!","11连击!","12连击!","13连击!","14连击!","15连击!","16连击!","17连击!","18连击!","19连击!","巨型连击"},
@@ -688,16 +689,16 @@ local langList={
 		WidgetText={
 			main={
 				play="开始",
-				setting="设置",
-				music="音乐室",
+				custom="自定义",
+				qplay="快速开始",
 				stat="统计信息",
 				help="帮助",
-				qplay="快速开始",
+				setting="设置",
 				lang="言/A",
+				music="音乐室",
 				quit="退出",
 			},
 			mode={
-				setting="参数(E)",
 				start="开始",
 				back="返回",
 			},
@@ -722,8 +723,8 @@ local langList={
 				bg="背景",
 				bgm="音乐",
 
-				copy="复制序列+场地+任务",
-				paste="粘贴序列+场地+任务",
+				clear="开始-消除",
+				puzzle="开始-拼图",
 
 				mission="←任务设置",
 				rule="更多规则(Tab)→",
@@ -743,6 +744,9 @@ local langList={
 				opponent="对手",
 				life="命数",
 				pushSpeed="上涨速度",
+
+				copy="复制序列+场地+任务",
+				paste="粘贴序列+场地+任务",
 
 				basic="←基本规则",
 				sequence="序列设置(Tab)→",
@@ -1059,7 +1063,6 @@ local langList={
 		marking="Game Author: MrZ_26\nIllegal recording if you can see this\nAny explanation is invalid",
 		holdR="Hold to restart",
 
-		lang="English",
 		atkModeName={"Random","Badges","K.O.s","Attackers"},
 		royale_remain=function(n)return n.." Players Remaining"end,
 		cmb={nil,"1 Combo","2 Combo","3 Combo","4 Combo","5 Combo","6 Combo","7 Combo","8 Combo","9 Combo","10 Combo!","11 Combo!","12 Combo!","13 Combo!","14 Combo!!","15 Combo!!","16 Combo!!","17 Combo!!!","18 Combo!!!","19 Combo!!!","MEGACMB"},
@@ -1204,16 +1207,16 @@ local langList={
 		WidgetText={
 			main={
 				play="Play",
-				setting="Settings",
-				music="Music Room",
+				custom="Custom",
+				qplay="Q. Play",
 				stat="Statistics",
 				help="Help",
-				qplay="Q. Play",
+				setting="Settings",
 				lang="言/A",
+				music="Music Room",
 				quit="Exit",
 			},
 			mode={
-				setting="Settings (E)",
 				start="Start",
 				back="Back",
 			},
@@ -1238,8 +1241,8 @@ local langList={
 				bg="Background",
 				bgm="Music",
 
-				copy="Copy Seq+Field+Misn",
-				paste="Paste Seq+Field+Misn",
+				clear="Start-Clear",
+				puzzle="Start-Puzzle",
 
 				mission="←Mission",
 				rule="Rules (Tab)→",
@@ -1259,6 +1262,9 @@ local langList={
 				opponent="Opponent",
 				life="Life",
 				pushSpeed="Garbage Speed",
+
+				copy="Copy Seq+Field+Misn",
+				paste="Paste Seq+Field+Misn",
 
 				basic="←Basic",
 				sequence="SEQ. (Tab)→",
@@ -1575,7 +1581,6 @@ local langList={
 		marking="Game Author:MrZ_26\nIllegal recording if see this\nAny explanation invalid",
 		holdR="→→→→R",
 
-		lang="?????",
 		atkModeName={"?","(  )","!","←→"},
 		royale_remain=function(n)return n.."~"end,
 		cmb={nil,"!","!!","!!!","!!!!","!!!!!","!!!!!!","!!!!!!!","!!!!!!!!","!!!!!!!!!","!!!!!!!!!!","!!!!!!!!!!!","!!!!!!!!!!!!","!!!!!!!!!!!!!","!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!!!!!","!!!!!!!!!!!!!!!!!!!!",},
@@ -1720,16 +1725,16 @@ local langList={
 		WidgetText={
 			main={
 				play="!!!",
-				setting="_?_",
-				music="~~~",
+				custom="_?!",
+				qplay="!",
 				stat="=___",
 				help="???",
-				qplay="!",
+				setting="_?_",
 				lang="言/A",
+				music="~~~",
 				quit="X",
 			},
 			mode={
-				setting="_?_ (E)",
 				start="!!!",
 				back="X",
 			},
@@ -1753,6 +1758,9 @@ local langList={
 				bg="{~}",
 				bgm="(~)",
 
+				clear="Start-Clear",
+				puzzle="Start-Puzzle",
+
 				mission="←Mission",
 				rule="Rule (Tab)→",
 				back="X",
@@ -1771,6 +1779,9 @@ local langList={
 				opponent="^_^",
 				life="<R>",
 				pushSpeed="_↑_↑_",
+
+				copy="Copy Seq+Field+Misn",
+				paste="Paste Seq+Field+Misn",
 
 				basic="←Basic",
 				sequence="Seq (Tab)→",
@@ -2085,7 +2096,6 @@ local langList={
 		marking="游戏作者:MrZ_26\n任何视频/直播不得出现此水印\n任何转述声明无效",
 		holdR="长按重开",
 
-		lang="就这",
 		atkModeName={"随机","徽章","击杀","反击"},
 		royale_remain=function(n)return"剩 "..n.." 人"end,
 		cmb={nil,"1连","2连","3连","4连","5连","6连","7连","8连","9连","10连!","11连!","12连!","13连!","14连!","15连!","16连!","17连!","18连!","19连!","MEGACMB"},
@@ -2240,16 +2250,16 @@ local langList={
 		WidgetText={
 			main={
 				play="开始",
-				setting="设置",
-				music="音乐室",
+				custom="自定义",
+				qplay="快速开始",
 				stat="统计信息",
 				help="帮助",
-				qplay="快速开始",
+				setting="设置",
 				lang="言/A",
+				music="音乐室",
 				quit="退出",
 			},
 			mode={
-				setting="参数(E)",
 				start="开始",
 				back="返回",
 			},
@@ -2274,8 +2284,8 @@ local langList={
 				bg="背景",
 				bgm="音乐",
 
-				copy="复制序列+场地+任务",
-				paste="粘贴序列+场地+任务",
+				clear="开始-消除",
+				puzzle="开始-拼图",
 
 				mission="←任务设置",
 				rule="更多规则(Tab)→",
@@ -2295,6 +2305,9 @@ local langList={
 				opponent="对手",
 				life="命数",
 				pushSpeed="上涨速度",
+
+				copy="复制序列+场地+任务",
+				paste="粘贴序列+场地+任务",
 
 				basic="←基本规则",
 				sequence="序列设置(Tab)→",

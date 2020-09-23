@@ -897,8 +897,8 @@ do--main
 		gc.print(system,610,100)
 		local L=text.modes[stat.lastPlay]
 		setFont(25)
-		gc.print(L[1],700,470)
-		gc.print(L[2],700,500)
+		gc.print(L[1],700,290)
+		gc.print(L[2],700,320)
 		players[1]:draw()
 	end
 end
@@ -1008,17 +1008,6 @@ do--mode
 	function keyDown.mode(key)
 		if key=="return"then
 			if mapCam.sel then
-				if mapCam.sel=="custom_clear"or mapCam.sel=="custom_puzzle"then
-					if customEnv.opponent>1 then
-						if customEnv.seq=="fixed"then
-							LOG.print(text.ai_fixed,"warn")
-							return
-						elseif #preBag>0 then
-							LOG.print(text.ai_prebag,"warn")
-							return
-						end
-					end
-				end
 				mapCam.keyCtrl=false
 				SCN.push()
 				loadGame(mapCam.sel)
@@ -1028,10 +1017,6 @@ do--mode
 				mapCam.sel=nil
 			else
 				SCN.back()
-			end
-		elseif mapCam.sel=="custom_clear" or mapCam.sel=="custom_puzzle" then
-			if key=="e"then
-				SCN.go("custom_basic")
 			end
 		end
 	end
@@ -1254,7 +1239,20 @@ do--custom_basic
 	end
 
 	function keyDown.custom_basic(key)
-		if key=="tab"then
+		if key=="return"or key=="return2"then
+			if customEnv.opponent>0 then
+				if customEnv.opponent>5 and customEnv.seq=="fixed"then
+					LOG.print(text.ai_fixed,"warn")
+					return
+				elseif customEnv.opponent>0 and #preBag>0 then
+					LOG.print(text.ai_prebag,"warn")
+					return
+				end
+			end
+			SCN.push()
+			
+			loadGame(key=="return"and"custom_clear"or"custom_puzzle",true)
+		elseif key=="tab"then
 			if kb.isDown("lshift","rshift")then
 				SCN.swapTo("custom_mission","swipeR")
 			else
