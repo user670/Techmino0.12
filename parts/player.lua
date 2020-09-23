@@ -2110,7 +2110,7 @@ do--player.drop(P)--Place piece
 		local cc,gbcc=0,0--Row/garbage-row cleared,full-part
 		local atk,exblock=0,0--Attack & extra defense
 		local send,off=0,0--Sending lines remain & offset
-		local cscore,sendTime=0,0--Score & send Time
+		local cscore,sendTime=10,0--Score & send Time
 		local dospin=0
 		local mini
 
@@ -2492,7 +2492,6 @@ do--player.drop(P)--Place piece
 			end
 		else--No lines clear
 			cmb=0
-			local dropScore=10
 
 			--Spin bonus
 			if dospin then
@@ -2502,32 +2501,29 @@ do--player.drop(P)--Place piece
 					SFX.play("spin_0")
 					VOC.play(spinName[CB.name],CHN)
 				end
-				dropScore=25
+				cscore=30
 			end
 
-			--DropSpeed bonus
-			if P._20G then
-				dropScore=dropScore*2
-			elseif ENV.drop<3 then
-				dropScore=dropScore*1.5
-			end
-
-			--Speed bonus
-			if P.dropSpeed>60 then
-				dropScore=dropScore*P.dropSpeed/60
-			elseif P.dropSpeed>120 then
-				dropScore=dropScore*1.2*P.dropSpeed/120
-			elseif P.dropSpeed>180 then
-				dropScore=dropScore*1.5*P.dropSpeed/180
-			end
-
-			cscore=cscore+dropScore
 			if P.b2b>1000 then
 				P.b2b=max(P.b2b-40,1000)
 			end
 			P:garbageRelease()
 		end
+
 		P.combo=cmb
+
+		local mul=1
+		--DropSpeed bonus
+		if P._20G then
+			cscore=cscore*2
+		elseif ENV.drop<3 then
+			cscore=cscore*1.5
+		end
+
+		--Speed bonus
+		if P.dropSpeed>60 then
+			cscore=cscore*(.9+P.dropSpeed/600)
+		end
 
 		cscore=int(cscore)
 		if ENV.score then
