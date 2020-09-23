@@ -7,6 +7,32 @@ local color=color
 local setFont=setFont
 local Timer=love.timer.getTime
 
+local text={
+	type="text",
+}
+function text:reset()
+	if type(self.text)=="string"then
+		self.text=gc.newText(setFont(self.font or 30),self.text)
+	end
+end
+function text:draw()
+	gc.setColor(self.color)
+	gc.draw(self.text,self.x,self.y)
+end
+
+local image={
+	type="image",
+}
+function image:reset()
+	if type(self.img)=="string"then
+		self.img=IMG[self.img]
+	end
+end
+function image:draw()
+	gc.setColor(1,1,1,self.alpha)
+	gc.draw(self.img,self.x,self.y,self.ang,self.kx,self.ky,self.ox,self.oy)
+end
+
 local button={
 	type="button",
 	ATV=0,--Activating time(0~8)
@@ -376,7 +402,7 @@ function WIDGET.set(L)
 	--Reset all widgets
 	if L then
 		for _,W in next,L do
-			W:reset()
+			if W.reset then W:reset()end
 		end
 	end
 end
@@ -391,28 +417,28 @@ function WIDGET.newText(D)
 		name=	D.name,
 		x=		D.x,
 		y=		D.y,
-		align=	D.align,
 		color=	D.color and(color[D.color]or D.color)or color.white,
-		font=	D.font,
 		hide=	D.hide,
 	}
-	for k,v in next,button do _[k]=v end
+	for k,v in next,text do _[k]=v end
 	setmetatable(_,widgetMetatable)
 	return _
 end
 function WIDGET.newImage(D)
 	local _={
 		name=	D.name,
-		x=		D.x-w*.5,
-		y=		D.y-h*.5,
-		w=		D.w,
-		h=		D.h,
-		color=	D.color and(color[D.color]or D.color)or color.white,
-		font=	D.font,
-		code=	D.code,
+		img=	D.img,
+		alpha=	D.alpha or 1,
+		x=		D.x,
+		y=		D.y,
+		ang=	D.ang,
+		kx=		D.kx,
+		ky=		D.ky,
+		ox=		D.ox,
+		oy=		D.oy,
 		hide=	D.hide,
 	}
-	for k,v in next,button do _[k]=v end 
+	for k,v in next,image do _[k]=v end 
 	setmetatable(_,widgetMetatable)
 	return _
 end
@@ -435,7 +461,7 @@ function WIDGET.newButton(D)
 		},
 
 		color=	D.color and(color[D.color]or D.color)or color.white,
-		font=	D.font,
+		font=	D.font or 30,
 		code=	D.code,
 		hide=	D.hide,
 	}
@@ -462,7 +488,7 @@ function WIDGET.newKey(D)
 		},
 
 		color=	D.color and(color[D.color]or D.color)or color.white,
-		font=	D.font,
+		font=	D.font or 30,
 		code=	D.code,
 		hide=	D.hide,
 	}
@@ -481,7 +507,7 @@ function WIDGET.newSwitch(D)
 			D.x+25,D.y,
 		},
 
-		font=	D.font,
+		font=	D.font or 30,
 		disp=	D.disp,
 		code=	D.code,
 		hide=	D.hide,
@@ -508,7 +534,7 @@ function WIDGET.newSlider(D)
 
 		unit=	D.unit or 1,
 		--smooth=nil,
-		font=	D.font,
+		font=	D.font or 30,
 		change=	D.change,
 		disp=	D.disp,
 		code=	D.code,
@@ -569,7 +595,7 @@ end
 function WIDGET.moveCursor(x,y)
 	WIDGET.sel=nil
 	for _,W in next,WIDGET.active do
-		if not(W.hide and W.hide())and W:isAbove(x,y)then
+		if not(W.hide and W.hide())and W.resCtr and W:isAbove(x,y)then
 			WIDGET.sel=W
 			return
 		end
@@ -691,49 +717,51 @@ function WIDGET.keyPressed(i)
 	elseif i=="up"or i=="down"or i=="left"or i=="right"then
 		if WIDGET.sel then
 			local W=WIDGET.sel
-			local WX,WY=W:getCenter()
-			local dir=(i=="right"or i=="down")and 1 or -1
-			local tar
-			local minDist=1e99
-			if i=="left"or i=="right"then
-				for i=1,#WIDGET.active do
-					local W1=WIDGET.active[i]
-					if W~=W1 and W1.resCtr then
-						local L=W1.resCtr
-						for j=1,#L,2 do
-							local x,y=L[j],L[j+1]
-							local dist=(x-WX)*dir
-							if dist>10 then
-								dist=dist+abs(y-WY)*6.26
-								if dist<minDist then
-									minDist=dist
-									tar=W1
+			if W.getCenter then
+				local WX,WY=W:getCenter()
+				local dir=(i=="right"or i=="down")and 1 or -1
+				local tar
+				local minDist=1e99
+				if i=="left"or i=="right"then
+					for i=1,#WIDGET.active do
+						local W1=WIDGET.active[i]
+						if W~=W1 and W1.resCtr then
+							local L=W1.resCtr
+							for j=1,#L,2 do
+								local x,y=L[j],L[j+1]
+								local dist=(x-WX)*dir
+								if dist>10 then
+									dist=dist+abs(y-WY)*6.26
+									if dist<minDist then
+										minDist=dist
+										tar=W1
+									end
+								end
+							end
+						end
+					end
+				else
+					for i=1,#WIDGET.active do
+						local W1=WIDGET.active[i]
+						if W~=W1 and W1.resCtr then
+							local L=W1.resCtr
+							for j=1,#L,2 do
+								local x,y=L[j],L[j+1]
+								local dist=(y-WY)*dir
+								if dist>10 then
+									dist=dist+abs(x-WX)*6.26
+									if dist<minDist then
+										minDist=dist
+										tar=W1
+									end
 								end
 							end
 						end
 					end
 				end
-			else
-				for i=1,#WIDGET.active do
-					local W1=WIDGET.active[i]
-					if W~=W1 and W1.resCtr then
-						local L=W1.resCtr
-						for j=1,#L,2 do
-							local x,y=L[j],L[j+1]
-							local dist=(y-WY)*dir
-							if dist>10 then
-								dist=dist+abs(x-WX)*6.26
-								if dist<minDist then
-									minDist=dist
-									tar=W1
-								end
-							end
-						end
-					end
+				if tar then
+					WIDGET.sel=tar
 				end
-			end
-			if tar then
-				WIDGET.sel=tar
 			end
 		else
 			WIDGET.sel=WIDGET.active[1]
@@ -776,7 +804,7 @@ end
 
 function WIDGET.update()
 	for _,W in next,WIDGET.active do
-		W:update()
+		if W.update then W:update()end
 	end
 end
 function WIDGET.draw()
