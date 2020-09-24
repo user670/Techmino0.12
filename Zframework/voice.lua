@@ -6,14 +6,10 @@ local VOC={}
 VOC.name={
 	"zspin","sspin","lspin","jspin","tspin","ospin","ispin",
 	"single","double","triple","techrash",
-	"mini","b2b","b3b","clear",
-	"win","lose",
-	"bye",
-	"nya",
-	"nya_happy",
-	"nya_doubt",
-	"nya_sad",
-	"egg",
+	"mini","b2b","b3b",
+	"perfect_clear","half_clear",
+	"win","lose","bye",
+	"test","happy","doubt","sad","egg",
 	"welcome_voc"
 }
 VOC.list={}

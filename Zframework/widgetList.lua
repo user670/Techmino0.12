@@ -429,7 +429,7 @@ local Widgets={
 		newSlider({name="spawn",	x=180,	y=300,w=400,					font=30,change=function()SFX.fplay("spawn_"..rnd(7),setting.spawn)end,disp=SETval("spawn"),	code=SETsto("spawn")}),
 		newSlider({name="bgm",		x=180,	y=400,w=400,					font=35,change=function()BGM.freshVolume()end,						disp=SETval("bgm"),		code=SETsto("bgm")}),
 		newSlider({name="vib",		x=750,	y=200,w=400,	unit=5,			font=28,change=function()VIB(2)end,									disp=SETval("vib"),		code=SETsto("vib")}),
-		newSlider({name="voc",		x=750,	y=300,w=400,					font=32,change=function()VOC.play("nya")end,						disp=SETval("voc"),		code=SETsto("voc")}),
+		newSlider({name="voc",		x=750,	y=300,w=400,					font=32,change=function()VOC.play("test")end,						disp=SETval("voc"),		code=SETsto("voc")}),
 		newButton({name="back",		x=1140,	y=640,w=170,h=80,color="white",	font=40,code=BACK}),
 	},
 	setting_control={
