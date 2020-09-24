@@ -519,7 +519,7 @@ local function drawField(P)
 	local start=int((P.fieldBeneath+P.fieldUp)/30+1)
 	local rep=game.replaying
 	if P.falling==-1 then--Blocks only
-		for j=start,min(start+20,#F)do
+		for j=start,min(start+21,#F)do
 			for i=1,10 do
 				if F[j][i]>0 then
 					if V[j][i]>0 then
@@ -537,7 +537,7 @@ local function drawField(P)
 		local dy,stepY=0,ENV.smooth and(P.falling/(ENV.fall+1))^2.5*30 or 30
 		local A=P.falling/ENV.fall
 		local h=1
-		for j=start,min(start+20,#F)do
+		for j=start,min(start+21,#F)do
 			while j==P.clearingRow[h]do
 				h=h+1
 				dy=dy+stepY
