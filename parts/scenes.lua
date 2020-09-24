@@ -108,6 +108,7 @@ do--calculator
 				elseif v==114 then EGG("T114.Flyz")
 				elseif v==127 then EGG("T127.gggf")
 				elseif v==196 then EGG("T196.蕴空之灵")
+				elseif v==210 then EGG("T210.Naki")
 				elseif v==238 then EGG("T238.模电")
 				elseif v==274 then EGG("T274.ZZZ")
 				elseif v==512 then EGG("T512.tatianyi")
@@ -118,6 +119,7 @@ do--calculator
 				elseif v==872 then EGG("T872.DIAO")
 				elseif v==942 then EGG("T942.思竣")
 				elseif v==1905 then EGG("T1905.Rinnya")
+				elseif v==3182 then EGG("T3182.蓝绿")
 				elseif v==7023 then EGG("T7023.Miya")
 				elseif v==190000+6022 then
 					S.pass,marking=true
@@ -671,8 +673,7 @@ do--load
 		if k=="a"then
 			sceneTemp.skip=true
 		elseif k=="s"then
-			marking=nil
-			sceneTemp.skip=true
+			sceneTemp.skip,marking=true
 		elseif k=="escape"then
 			SCN.back()
 		end
@@ -1385,20 +1386,6 @@ do--custom_seq
 				until preBag[p+1]~=preBag[S.cur+1]
 				S.cur=p
 			end
-		elseif key=="c"and kb.isDown("lctrl","rctrl")or key=="cC"then
-			if #preBag>0 then
-				sys.setClipboardText("Techmino SEQ:"..copySequence())
-				LOG.print(text.copySuccess,color.green)
-			end
-		elseif key=="v"and kb.isDown("lctrl","rctrl")or key=="cV"then
-			local str=sys.getClipboardText()
-			local p=string.find(str,":")--ptr*
-			if p then str=sub(str,p+1)end
-			if pasteSequence(str)then
-				LOG.print(text.pasteSuccess,color.green)
-			else
-				LOG.print(text.dataCorrupted,color.red)
-			end
 		elseif key=="backspace"then
 			if S.cur>0 then
 				rem(preBag,S.cur)
@@ -1414,6 +1401,20 @@ do--custom_seq
 				SFX.play("finesseError",.7)
 			else
 				S.sure=50
+			end
+		elseif key=="c"and kb.isDown("lctrl","rctrl")or key=="cC"then
+			if #preBag>0 then
+				sys.setClipboardText("Techmino SEQ:"..copySequence())
+				LOG.print(text.copySuccess,color.green)
+			end
+		elseif key=="v"and kb.isDown("lctrl","rctrl")or key=="cV"then
+			local str=sys.getClipboardText()
+			local p=string.find(str,":")--ptr*
+			if p then str=sub(str,p+1)end
+			if pasteSequence(str)then
+				LOG.print(text.pasteSuccess,color.green)
+			else
+				LOG.print(text.dataCorrupted,color.red)
 			end
 		elseif key=="tab"then
 			if kb.isDown("lshift","rshift")then
@@ -1737,20 +1738,6 @@ do--custom_mission
 				until preMission[p+1]~=preMission[S.cur+1]
 				S.cur=p
 			end
-		elseif key=="c"and kb.isDown("lctrl","rctrl")or key=="cC"then
-			if #preMission>0 then
-				sys.setClipboardText("Techmino Target:"..copyMission())
-				LOG.print(text.copySuccess,color.green)
-			end
-		elseif key=="v"and kb.isDown("lctrl","rctrl")or key=="cV"then
-			local str=sys.getClipboardText()
-			local p=string.find(str,":")--ptr*
-			if p then str=sub(str,p+1)end
-			if pasteMission(str)then
-				LOG.print(text.pasteSuccess,color.green)
-			else
-				LOG.print(text.dataCorrupted,color.red)
-			end
 		elseif key=="backspace"then
 			if S.cur>0 then
 				rem(preMission,S.cur)
@@ -1766,6 +1753,20 @@ do--custom_mission
 				SFX.play("finesseError",.7)
 			else
 				S.sure=50
+			end
+		elseif key=="c"and kb.isDown("lctrl","rctrl")or key=="cC"then
+			if #preMission>0 then
+				sys.setClipboardText("Techmino Target:"..copyMission())
+				LOG.print(text.copySuccess,color.green)
+			end
+		elseif key=="v"and kb.isDown("lctrl","rctrl")or key=="cV"then
+			local str=sys.getClipboardText()
+			local p=string.find(str,":")--ptr*
+			if p then str=sub(str,p+1)end
+			if pasteMission(str)then
+				LOG.print(text.pasteSuccess,color.green)
+			else
+				LOG.print(text.dataCorrupted,color.red)
 			end
 		elseif key=="tab"then
 			if kb.isDown("lshift","rshift")then
@@ -1879,10 +1880,11 @@ do--custom_mission
 	end
 end
 do--play
+	local VK=virtualkey
 	local function onVirtualkey(x,y)
 		local dist,nearest=1e10
-		for K=1,#virtualkey do
-			local b=virtualkey[K]
+		for K=1,#VK do
+			local b=VK[K]
 			if b.ava then
 				local d1=(x-b.x)^2+(y-b.y)^2
 				if d1<b.r^2 then
@@ -1914,13 +1916,13 @@ do--play
 			if setting.VKSFX>0 then
 				SFX.play("virtualKey",setting.VKSFX)
 			end
-			virtualkey[t].isDown=true
-			virtualkey[t].pressTime=10
+			VK[t].isDown=true
+			VK[t].pressTime=10
 			if setting.VKTrack then
-				local B=virtualkey[t]
+				local B=VK[t]
 				if setting.VKDodge then--Button collision (not accurate)
-				for i=1,#virtualkey do
-						local b=virtualkey[i]
+				for i=1,#VK do
+						local b=VK[i]
 						local d=B.r+b.r-((B.x-b.x)^2+(B.y-b.y)^2)^.5--Hit depth(Neg means distance)
 						if d>0 then
 							b.x=b.x+(b.x-B.x)*d*b.r*5e-4
@@ -1950,8 +1952,8 @@ do--play
 		if not setting.VKSwitch or game.replaying then return end
 
 		local l=tc.getTouches()
-		for n=1,#virtualkey do
-			local B=virtualkey[n]
+		for n=1,#VK do
+			local B=VK[n]
 			for i=1,#l do
 				local x,y=xOy:inverseTransformPoint(tc.getPosition(l[i]))
 				if(x-B.x)^2+(y-B.y)^2<=B.r^2 then
@@ -1963,20 +1965,19 @@ do--play
 		end
 	end
 	function keyDown.play(key)
-		if key=="escape"then
-			pauseGame()
-			return
-		end
 		if game.replaying then return end
+
 		local m=keyMap
 		for k=1,20 do
 			if key==m[1][k]or key==m[2][k]then
 				players[1]:pressKey(k)
-				virtualkey[k].isDown=true
-				virtualkey[k].pressTime=10
+				VK[k].isDown=true
+				VK[k].pressTime=10
 				return
 			end
 		end
+
+		if key=="escape"then pauseGame()end
 	end
 	function keyUp.play(key)
 		if game.replaying then return end
@@ -1984,24 +1985,25 @@ do--play
 		for k=1,20 do
 			if key==m[1][k]or key==m[2][k]then
 				players[1]:releaseKey(k)
-				virtualkey[k].isDown=false
+				VK[k].isDown=false
 				return
 			end
 		end
 	end
 	function gamepadDown.play(key)
-		if key=="back"then SCN.back()return end
 		if game.replaying then return end
 
 		local m=keyMap
 		for k=1,20 do
 			if key==m[3][k]or key==m[4][k]then
 				players[1]:pressKey(k)
-				virtualkey[k].isDown=true
-				virtualkey[k].pressTime=10
+				VK[k].isDown=true
+				VK[k].pressTime=10
 				return
 			end
 		end
+
+		if key=="back"then pauseGame()end
 	end
 	function gamepadUp.play(key)
 		if game.replaying then return end
@@ -2010,7 +2012,7 @@ do--play
 		for k=1,20 do
 			if key==m[3][k]or key==m[4][k]then
 				players[1]:releaseKey(k)
-				virtualkey[k].isDown=false
+				VK[k].isDown=false
 				return
 			end
 		end
@@ -2025,8 +2027,8 @@ do--play
 
 		--Update virtualkey animation
 		if setting.VKSwitch then
-			for i=1,#virtualkey do
-				_=virtualkey[i]
+			for i=1,#VK do
+				_=VK[i]
 				if _.pressTime>0 then
 					_.pressTime=_.pressTime-1
 				end
@@ -2041,10 +2043,10 @@ do--play
 				local k=L[_+1]
 				if k>0 then
 					P1:pressKey(k)
-					virtualkey[k].isDown=true
-					virtualkey[k].pressTime=10
+					VK[k].isDown=true
+					VK[k].pressTime=10
 				else
-					virtualkey[-k].isDown=false
+					VK[-k].isDown=false
 					P1:releaseKey(-k)
 				end
 				_=_+2
@@ -2131,18 +2133,17 @@ do--play
 		gc.circle("line",x,y,30*(1+a),6)
 	end
 	local function drawVirtualkey()
-		local V=virtualkey
 		local a=setting.VKAlpha
 		local _
 		if setting.VKIcon then
 			local icons=TEXTURE.VKIcon
-			for i=1,#V do
-				if V[i].ava then
-					local B=V[i]
+			for i=1,#VK do
+				if VK[i].ava then
+					local B=VK[i]
 					gc.setColor(1,1,1,a)
 					gc.setLineWidth(B.r*.07)
 					gc.circle("line",B.x,B.y,B.r,10)--Button outline
-					_=V[i].pressTime
+					_=VK[i].pressTime
 					gc.draw(icons[i],B.x,B.y,nil,B.r*.026+_*.08,nil,18,18)--Icon
 					if _>0 then
 						gc.setColor(1,1,1,a*_*.08)
@@ -2152,13 +2153,13 @@ do--play
 				end
 			end
 		else
-			for i=1,#V do
-				if V[i].ava then
-					local B=V[i]
+			for i=1,#VK do
+				if VK[i].ava then
+					local B=VK[i]
 					gc.setColor(1,1,1,a)
 					gc.setLineWidth(B.r*.07)
 					gc.circle("line",B.x,B.y,B.r,10)
-					_=V[i].pressTime
+					_=VK[i].pressTime
 					if _>0 then
 						gc.setColor(1,1,1,a*_*.08)
 						gc.circle("fill",B.x,B.y,B.r*.94,10)
