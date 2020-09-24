@@ -55,7 +55,7 @@ local gameEnv0={
 
 	bg="none",bgm="race"
 }
-local scs=require("parts/spinCenters")
+local scs=spinCenters
 local kickList=require("parts/kickList")
 local CCblockID={6,5,4,3,2,1,0}
 local freshPrepare={

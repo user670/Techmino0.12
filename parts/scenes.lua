@@ -2720,7 +2720,7 @@ do--setting_key
 	end
 end
 do--setting_skin
-	local scs=require("parts/spinCenters")
+	local scs=spinCenters
 	function Pnt.setting_skin()
 		gc.setColor(1,1,1)gc.draw(drawableText.setting_skin,80,50)
 		for N=1,7 do

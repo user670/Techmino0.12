@@ -50,7 +50,6 @@ local function pushZero(T)
 	end
 end
 
-local scs=require("parts/spinCenters")
 local OspinList={
 	{111,5,2, 0,-1,0},{111,5,2,-1,-1,0},{111,5,0,-1, 0,0},--T
 	{333,5,2,-1,-1,0},{333,5,2, 0,-1,0},{333,5,0, 0, 0,0},--T
@@ -135,7 +134,7 @@ local TRS={
 						C.bk=bk
 						P.curX,P.curY=x,y
 						P.r,P.c=#bk,#bk[1]
-						P.dir,P.sc=dir,scs[id][dir]
+						P.dir,P.sc=dir,spinCenters[id][dir]
 						P.spinLast=2
 						P.stat.rotate=P.stat.rotate+1
 						P:freshBlock(false,true)
