@@ -2340,39 +2340,38 @@ do--player.drop(P)--Place piece
 			end
 
 			--PC/HPC bonus
-			if clear then
-				if #P.field==0 then	
-					P:showText(text.PC,0,-80,50,"flicker")
-					atk=atk*.5+min(8+STAT.pc*2,20)
-					exblock=exblock+2
-					sendTime=sendTime+120
-					if STAT.row+cc>4 then
-						P.b2b=1200
-						cscore=cscore+300*min(6+STAT.pc,10)
-					else
-						cscore=cscore+626
-					end
-					STAT.pc=STAT.pc+1
-					if P.human then
-						SFX.play("clear")
-						VOC.play("clear",CHN)
-					end
-					C.special=true
-				elseif cc>1 or #P.field==P.garbageBeneath then
-					P:showText(text.HPC,0,-80,50,"fly")
-					atk=atk+2
-					exblock=exblock+2
-					sendTime=sendTime+60
+			C.pc,C.hpc=false,false
+			if clear and #P.field==0 then	
+				P:showText(text.PC,0,-80,50,"flicker")
+				atk=atk*.5+min(8+STAT.pc*2,20)
+				exblock=exblock+2
+				sendTime=sendTime+120
+				if STAT.row+cc>4 then
+					P.b2b=1200
+					cscore=cscore+300*min(6+STAT.pc,10)
+				else
 					cscore=cscore+626
-					STAT.hpc=STAT.hpc+1
-					if P.human then
-						SFX.play("clear")
-					end
-					C.special=true
+				end
+				STAT.pc=STAT.pc+1
+				if P.human then
+					SFX.play("clear")
+					VOC.play("perfect_clear",CHN)
 				end
 				C.pc=true
-			else
-				C.pc=false
+				C.special=true
+			elseif clear and(cc>1 or #P.field==P.garbageBeneath)then
+				P:showText(text.HPC,0,-80,50,"fly")
+				atk=atk+2
+				exblock=exblock+2
+				sendTime=sendTime+60
+				cscore=cscore+626
+				STAT.hpc=STAT.hpc+1
+				if P.human then
+					SFX.play("clear")
+					VOC.play("half_clear",CHN)
+				end
+				C.hpc=true
+				C.special=true
 			end
 
 			--Normal clear, reduce B2B point
