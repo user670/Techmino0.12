@@ -2735,18 +2735,13 @@ function player.lose(P)
 				if P.id==1 or A.id==1 then
 					TASK.new(TICK.throwBadge,{A.ai,P,max(3,P.badge)*4})
 				end
-				freshMostBadge()
 			end
 		else
 			P.badge=-1
 		end
-
+		
+		freshMostBadge()
 		freshMostDangerous()
-		for i=1,#players.alive do
-			if players.alive[i].atking==P then
-				players.alive[i]:freshTarget()
-			end
-		end
 		if #players.alive==royaleData.stage[game.stage]then
 			royaleLevelup()
 		end

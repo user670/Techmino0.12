@@ -2091,8 +2091,8 @@ do--play
 		end
 
 		--Fresh royale target
-		if game.frame%120==0 then
-			if modeEnv.royaleMode then freshMostDangerous()end
+		if modeEnv.royaleMode and game.frame%120==0 then
+			freshMostDangerous()
 		end
 
 		--Warning check
