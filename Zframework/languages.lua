@@ -69,6 +69,10 @@ local langList={
 		noScore="暂无成绩",
 		highScore="最佳成绩",
 		newRecord="打破纪录",
+		getNoticeFail="拉取公告失败",
+		getVersionFail="检测新版本失败",
+		versionIsNew="游戏已是最新版本",
+		versionIsOld="最新版本$1可以下载了!",
 		errorMsg="Techmino遭受了雷击,需要重新启动.\n我们已收集了一些错误信息,你可以向作者进行反馈.",
 
 		acts={
@@ -599,6 +603,10 @@ local langList={
 		noScore="暂无成绩",
 		highScore="最佳成绩",
 		newRecord="打破纪录",
+		getNoticeFail="拉取公告失败",
+		getVersionFail="检测新版本失败",
+		versionIsNew="游戏已是最新版本",
+		versionIsOld="最新版本$1可以下载了!",
 		errorMsg="Techmino遭受了雷击,需要重新启动.\n我们已收集了一些错误信息,你可以向作者进行反馈.",
 
 		acts={
@@ -1127,6 +1135,10 @@ local langList={
 		noScore="No Scores Yet",
 		highScore="Personal Bests",
 		newRecord="New Record!",
+		getNoticeFail="get notice failed",
+		getVersionFail="get newest version failed",
+		versionIsNew="You are now on the latest version.",
+		versionIsOld="Version $1 is available now!",
 		errorMsg="An error has occurred and Techmino needs to restart.\nError info has been created, and you can send it to the author.",
 
 		acts={
@@ -1645,6 +1657,10 @@ local langList={
 		noScore="?_____?",
 		highScore="__&:",
 		newRecord="^!!!^",
+		getNoticeFail="ge7 no7!ce f@i1ed",
+		getVersionFail="ge7 newe5t ver5i0n f@i1ed",
+		versionIsNew="Y0u @re now 0n the l@7e57 ver5ion.",
+		versionIsOld="Versi0n $1 is @v@i1able n0w!",
 		errorMsg="An e??o? h@s occ^__ed @nd Techmino n__ds to r_st@rt.\n&**o* in#o h@$ b==n cre@ted, @nd y0u c@n $&nd it to the @uth0r.",
 
 		acts={
@@ -2160,6 +2176,10 @@ local langList={
 		noScore="暂无成绩",
 		highScore="最佳成绩",
 		newRecord="打破纪录",
+		getNoticeFail="拉取公告失败",
+		getVersionFail="拉取公告失败",
+		versionIsNew="游戏已是最新版本",
+		versionIsOld="最新版本$1可以下载了!",
 		errorMsg="Techmino遭受了雷击,需要重新启动.\n我们已收集了一些错误信息,你可以向作者进行反馈.",
 
 		acts={

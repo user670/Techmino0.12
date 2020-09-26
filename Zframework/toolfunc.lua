@@ -88,6 +88,20 @@ do--dumpTable
 		return s..tabs[t-1].."}"
 	end
 end
+do--HTTPrequest
+	local http=require("socket.http")
+	function HTTPrequest(url)
+		local data={}
+		local res,code,response_headers,response_body=http.request{
+			url=url,
+			sink=ltn12.sink.table(data)
+		}
+		if not res then
+			LOG.print("NET ERROR: code="..(code or"nil"))
+		end
+		return data[1]
+	end
+end
 function addToTable(G,base)--Refresh default base with G-values
 	for k,v in next,G do
 		if type(v)==type(base[k])then

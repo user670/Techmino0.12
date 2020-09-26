@@ -770,6 +770,7 @@ end
 do--intro
 	function sceneInit.intro()
 		BG.set("space")
+		BGM.play("blank")
 		sceneTemp={
 			t1=0,--Timer 1
 			t2=0,--Timer 2
@@ -778,7 +779,20 @@ do--intro
 		for i=1,8 do
 			sceneTemp.r[i]=rnd(5)
 		end
-		BGM.play("blank")
+		local notice=HTTPrequest("http://47.103.200.40/api/notice.php")
+		if notice then
+			LOG.print(notice)
+		else
+			LOG.print(text.getNoticeFail,"warn")
+		end
+		local newVersion=HTTPrequest("http://47.103.200.40/api/getNewVersion.php")
+		if not newVersion then
+			LOG.print(text.getVersionFail)
+		elseif newVersion~=gameVersion then
+			LOG.print(string.gsub(text.versionIsOld,"$1",newVersion),"warn")
+		else
+			LOG.print(text.versionIsNew)
+		end
 	end
 
 	function mouseDown.intro(x,y,k)
