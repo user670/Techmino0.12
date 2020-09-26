@@ -2574,8 +2574,8 @@ local function gameOver()--Save record
 	if R then
 		local P=players[1]
 		R=R(P)--New rank
-		LOG.print(text.getRank..text.ranks[R],color.green)
 		if R then
+			LOG.print(text.getRank..text.ranks[R],color.green)
 			local r=modeRanks[M.name]--Old rank
 			local _
 			if R>r then
