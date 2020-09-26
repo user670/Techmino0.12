@@ -20,8 +20,6 @@ local function loadVoiceFile(N,vocName)
 		bank[vocName]={love.audio.newSource(fileName,"static")}
 		table.insert(VOC.list[N],vocName)
 		return true
-	else
-		return
 	end
 end
 function VOC.loadOne(_)
@@ -39,6 +37,7 @@ function VOC.loadOne(_)
 			LOG.print("No VOICE file: "..N,"warn")
 		end
 	end
+	if not VOC.list[N][1]then VOC.list[N]=nil end
 end
 function VOC.loadAll()
 	for i=1,#VOC.name do
