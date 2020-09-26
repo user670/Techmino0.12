@@ -64,7 +64,7 @@ function LOG.print(text,T,C)--text,type/time,color
 		C=C or color.white
 		time=T
 	elseif type(T)=="table"then
-		C,T=T or color.white
+		C,T=T
 	elseif not C then
 		C=color.white
 	end
