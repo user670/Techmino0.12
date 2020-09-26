@@ -158,6 +158,7 @@ local langList={
 			Goldwave
 		使用库:
 			Cold_Clear[MinusKelvin]
+			json.lua[rxi]
 			simple-love-lights[dylhunn]
 		]],
 		support="支持作者",
@@ -690,6 +691,7 @@ local langList={
 			Goldwave
 		使用库:
 			Cold_Clear[MinusKelvin]
+			json.lua[rxi]
 			simple-love-lights[dylhunn]
 		]],
 		support="支持作者",
@@ -1213,7 +1215,15 @@ local langList={
 			"Flyz, Farter, 蕴空之灵,",
 			"Teatube, [All test staff]",
 		},
-		used="Tools used:\n\tBeepbox\n\tGFIE\n\tGoldwave\nLib used:\n\tCold_Clear[MinusKelvin]\n\tsimple-love-lights[dylhunn]",
+		used=[[
+		Tools used:
+			Beepbox
+			GFIE
+			Goldwave
+		Lib used:
+			Cold_Clear[MinusKelvin]
+			simple-love-lights[dylhunn]
+		]],
 		support="Support author",
 		group="Official QQ Group (if not hacked): 1127702001",
 		WidgetText={
@@ -1735,7 +1745,15 @@ local langList={
 			"Flyz, Farter, 蕴空之灵,",
 			"Teatube, [All test staff]",
 		},
-		used="Tool used:\n\tBeepbox\n\tGFIE\n\tGoldwave\nLib used:\n\tCold_Clear[MinusKelvin]\n\tsimple-love-lights[dylhunn]",
+		used=[[
+		Tools used:
+			Beepbox
+			GFIE
+			Goldwave
+		Lib used:
+			Cold_Clear[MinusKelvin]
+			simple-love-lights[dylhunn]
+		]],
 		support="Support author",
 		group="Official QQ Group(if not hacked):1127702001",
 		WidgetText={
