@@ -37,6 +37,7 @@ local langList={
 		setting_sound="声音设置",
 		setting_control="控制设置",
 		setting_skin="外观设置",
+		dict="小Z方块词典",
 		preview="预览",
 		keyboard="键盘",joystick="手柄",
 		ctrlSetHelp="方向键选择/翻页,回车/空格修改,esc返回",
@@ -327,7 +328,7 @@ local langList={
 				shakeFX="晃动特效等级",
 				atkFX="攻击特效等级",
 				frame="绘制帧率",
-				
+
 				text="消行文本",
 				score="分数动画",
 				warn="死亡预警",
@@ -341,7 +342,7 @@ local langList={
 			setting_sound={
 				game="←游戏设置",
 				graphic="画面设置→",
-				
+
 				sfx="音效",
 				stereo="立体声",
 				spawn="方块生成",
@@ -429,9 +430,15 @@ local langList={
 				back="返回",
 			},
 			help={
+				dict="小Z词典",
 				staff="制作人员",
 				his="更新历史",
 				qq="作者QQ",
+				back="返回",
+			},
+			dict={
+				del="<X",
+				reset="R",
 				back="返回",
 			},
 			staff={
@@ -572,6 +579,7 @@ local langList={
 		setting_sound="声音设置",
 		setting_control="控制设置",
 		setting_skin="外观设置",
+		dict="小Z方块词典",
 		preview="预览",
 		keyboard="键盘",joystick="手柄",
 		ctrlSetHelp="方向键选择/翻页,回车/空格修改,esc返回",
@@ -860,7 +868,7 @@ local langList={
 				shakeFX="晃动特效等级",
 				atkFX="攻击特效等级",
 				frame="绘制帧率",
-				
+
 				text="消行文本",
 				score="分数动画",
 				warn="死亡预警",
@@ -874,7 +882,7 @@ local langList={
 			setting_sound={
 				game="←游戏设置",
 				graphic="画面设置→",
-				
+
 				sfx="音效",
 				stereo="立体声",
 				spawn="方块生成",
@@ -962,9 +970,15 @@ local langList={
 				back="返回",
 			},
 			help={
+				dict="小Z词典",
 				staff="制作人员",
 				his="更新历史",
 				qq="作者QQ",
+				back="返回",
+			},
+			dict={
+				del="<X",
+				reset="R",
 				back="返回",
 			},
 			staff={
@@ -1105,6 +1119,7 @@ local langList={
 		setting_sound="Sound Settings",
 		setting_control="Control Settings",
 		setting_skin="Layout Settings",
+		dict="TetroDictionary",
 		preview="Preview",
 		keyboard="Keyboard",joystick="Controller",
 		ctrlSetHelp="Arrow keys: select/change slot, Enter/Space: Change, Esc: Go back",
@@ -1390,7 +1405,7 @@ local langList={
 				shakeFX="Field Sway Level",
 				atkFX="ATK. FX Level",
 				frame="Render Frame Rate",
-				
+
 				text="Action Text",
 				score="Pop-up Score",
 				warn="Death Alert",
@@ -1404,7 +1419,7 @@ local langList={
 			setting_sound={
 				game="←Game",
 				graphic="Video→",
-				
+
 				sfx="SFX",
 				stereo="Stereo",
 				spawn="Spawning",
@@ -1492,9 +1507,15 @@ local langList={
 				back="Back",
 			},
 			help={
+				dict="little Z",
 				staff="Staff",
 				his="History",
 				qq="Author's qq",
+				back="Back",
+			},
+			dict={
+				del="<X",
+				reset="R",
 				back="Back",
 			},
 			staff={
@@ -1635,6 +1656,7 @@ local langList={
 		setting_sound="(~~)",
 		setting_control="[~~]",
 		setting_skin="%{~~}",
+		dict="TetroDictionary",
 		preview="?:",
 		keyboard="[##]",joystick="^-^",
 		ctrlSetHelp="..........................",
@@ -1919,7 +1941,7 @@ local langList={
 				shakeFX="~|~|~",
 				atkFX="→→~",
 				frame="|=|",
-				
+
 				text="ABC",
 				score="+123",
 				warn="!↑↑↑!",
@@ -1933,7 +1955,7 @@ local langList={
 			setting_sound={
 				game="←Game",
 				graphic="Video→",
-				
+
 				sfx="#!#",
 				stereo="←~→",
 				spawn="#[]#",
@@ -2021,9 +2043,15 @@ local langList={
 				back="X",
 			},
 			help={
+				dict="z",
 				staff="Orz",
 				his="_&_",
 				qq="_@_",
+				back="X",
+			},
+			dict={
+				del="<X",
+				reset="R",
 				back="X",
 			},
 			staff={
@@ -2162,6 +2190,7 @@ local langList={
 		setting_sound="改声音",
 		setting_control="改控制",
 		setting_skin="改外观",
+		dict="小Z方块词典",
 		preview="预览",
 		keyboard="键盘",joystick="手柄",
 		ctrlSetHelp="方向键选择/翻页,回车/空格修改,esc返回",
@@ -2449,7 +2478,7 @@ local langList={
 				shakeFX="晃动特效",
 				atkFX="攻击特效",
 				frame="绘制帧率",
-				
+
 				text="招式名",
 				score="跳分",
 				warn="死亡预警",
@@ -2463,7 +2492,7 @@ local langList={
 			setting_sound={
 				game="←游戏设置",
 				graphic="改画面→",
-				
+
 				sfx="音效",
 				stereo="立体声",
 				spawn="出块",
@@ -2551,9 +2580,15 @@ local langList={
 				back="返回",
 			},
 			help={
+				dict="小Z词典",
 				staff="制作人员",
 				his="更新历史",
 				qq="作者QQ",
+				back="返回",
+			},
+			dict={
+				del="<X",
+				reset="R",
 				back="返回",
 			},
 			staff={
@@ -2725,6 +2760,7 @@ local drawableTextLoad={
 	"custom","basic","rule","field","mission",
 	"setting_game","setting_video","setting_sound",
 	"setting_control","setting_skin",
+	"dict",
 	"keyboard","joystick",
 	"ctrlSetHelp",
 	"musicRoom","nowPlaying",

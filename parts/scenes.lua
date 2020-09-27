@@ -922,14 +922,14 @@ end
 do--mode
 	mapCam={
 		sel=nil,--Selected mode ID
-	
+
 		--Basic paragrams
 		x=0,y=0,k=1,--Camera pos/k
 		x1=0,y1=0,k1=1,--Camera pos/k shown
-	
+
 		--If controlling with key
 		keyCtrl=false,
-	
+
 		--For auto zooming when enter/leave scene
 		zoomMethod=nil,
 		zoomK=nil,
@@ -1282,7 +1282,7 @@ do--custom_basic
 				end
 			end
 			SCN.push()
-			
+
 			loadGame(key=="return"and"custom_clear"or"custom_puzzle",true)
 		elseif key=="tab"then
 			if kb.isDown("lshift","rshift")then
@@ -1479,7 +1479,7 @@ do--custom_seq
 		--Draw frame
 		gc.setLineWidth(4)
 		gc.rectangle("line",100,110,1080,260)
-		
+
 		--Draw sequence
 		local miniBlock=TEXTURE.miniBlock
 		local libColor=SKIN.libColor
@@ -2981,6 +2981,142 @@ do--help
 		setFont(30)
 		mStr(text.support,150+sin(Timer()*4)*20,283)
 		mStr(text.support,1138-sin(Timer()*4)*20,270)
+	end
+end
+do--dict
+	function sceneInit.dict()
+		sceneTemp={
+			input="",
+			dict=require("document/dict"),
+			result={},
+			select=nil,
+			title=nil,
+			lastSearch=nil,
+		}
+		BG.set("rainbow")
+	end
+
+	local function search()
+		local S=sceneTemp
+		local dict=S.dict
+		local result=S.result
+		for i=1,#result do rem(result)end
+		local first
+		for i=1,#dict do
+			local pos=find(dict[i][1],S.input)
+			if pos==1 and not first then
+				ins(result,1,dict[i])
+				first=true
+			elseif pos then
+				ins(result,dict[i])
+			end
+			if first and #result==15 then
+				break
+			end
+		end
+		if result[1]then
+			S.select=1
+			S.title=result[1][3]
+		else
+			S.select=nil
+			S.title=nil
+		end
+	end
+
+	function keyDown.dict(key)
+		local S=sceneTemp
+		if #key==1 then
+			if #S.input<15 then
+				S.input=S.input..key
+			end
+		elseif key=="up"then
+			if S.select and S.select>1 then
+				S.select=S.select-1
+			end
+		elseif key=="down"then
+			if S.select and S.select<#S.result and S.select<15 then
+				S.select=S.select+1
+			end
+		elseif key=="delete"then
+			if #S.input>0 then
+				S.input=""
+				S.select=nil
+				S.lastSearch=nil
+				SFX.play("hold")
+			end
+		elseif key=="backspace"then
+			S.input=sub(S.input,1,-2)
+			if #S.input==0 then
+				S.select=nil
+				S.lastSearch=nil
+			end
+		elseif key=="escape"then
+			SCN.back()
+		elseif key=="return"then
+			if #S.input<2 then
+				S.input=""
+			elseif S.input~=S.lastSearch then
+				search()
+				if S.result[1]then
+					SFX.play("reach")
+				else
+					SFX.play("finesseError")
+				end
+				S.lastSearch=S.input
+			end
+		end
+	end
+
+	local typeColor={
+		help=color.lGrey,
+		other=color.lOrange,
+		game=color.lCyan,
+		term=color.lRed,
+		name=color.lPurple,
+	}
+	function Pnt.dict()
+		local S=sceneTemp
+		gc.setColor(1,1,1)
+		gc.draw(drawableText.dict,20,5)
+
+		setFont(40)
+		gc.print(S.input,35,110)
+
+		gc.setLineWidth(4)
+		gc.rectangle("line",20,109,726,60)
+
+		if S.select then
+			gc.rectangle("line",300,180,958,526)
+			gc.rectangle("line",20,180,280,526)
+
+			gc.setColor(1,1,1)
+			local text=S.result[S.select][4]
+			if #text>500 then
+				setFont(20)
+			elseif #text>300 then
+				setFont(24)
+			else
+				setFont(28)
+			end
+			gc.printf(text,306,180,950)
+
+			setFont(30)
+			gc.setColor(1,1,1,.4+.2*sin(Timer()*4))
+			gc.rectangle("fill",20,143+35*S.select,280,35)
+
+			setFont(30)
+			for i=1,min(#S.result,15)do
+				local S=S.result[i]
+				local y=142+35*i
+				gc.setColor(0,0,0)
+				gc.print(S[3],29,y-1)
+				gc.print(S[3],29,y+1)
+				gc.print(S[3],31,y-1)
+				gc.print(S[3],31,y+1)
+				gc.setColor(typeColor[S[2]])
+				gc.print(S[3],30,y)
+			end
+		end
 	end
 end
 do--staff

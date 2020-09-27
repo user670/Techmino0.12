@@ -115,6 +115,7 @@ local newKey=		WIDGET.newKey
 local newSwitch=	WIDGET.newSwitch
 local newSlider=	WIDGET.newSlider
 local newSelector=	WIDGET.newSelector
+local newKeyboard=	WIDGET.newKeyboard
 
 --All widgets
 local Widgets={
@@ -610,10 +611,17 @@ local Widgets={
 		newButton({name="back",		x=1140,y=640,w=170,h=80,color="white",	font=40,code=BACK}),
 	},
 	help={
-		newButton({name="staff",	x=980,	y=500,w=150,h=80,color="white",font=32,code=goScene("staff")}),
-		newButton({name="his",		x=1160,	y=500,w=150,h=80,color="white",font=32,code=goScene("history")}),
-		newButton({name="qq",		x=1070,	y=600,w=200,h=80,color="white",font=32,code=function()love.system.openURL("tencent://message/?uin=1046101471&Site=&Menu=yes")end,hide=mobileHide}),
+		newButton({name="dict",		x=1140,	y=410,w=220,h=70,color="white",font=35,code=goScene("dict")}),
+		newButton({name="staff",	x=1140,	y=490,w=220,h=70,color="white",font=35,code=goScene("staff")}),
+		newButton({name="his",		x=1140,	y=570,w=220,h=70,color="white",font=35,code=goScene("history")}),
+		newButton({name="qq",		x=1140,	y=650,w=220,h=70,color="white",font=35,code=function()love.system.openURL("tencent://message/?uin=1046101471&Site=&Menu=yes")end,hide=mobileHide}),
 		newButton({name="back",		x=640,	y=600,w=200,h=80,color="white",font=35,code=BACK}),
+	},
+	dict={
+		newKey({name="del",			x=910,	y=90,w=120,h=120,color="white",font=60,code=pressKey("backspace"),hide=function()return #sceneTemp.input==0 end}),
+		newKey({name="reset",		x=1050,	y=90,w=120,h=120,color="white",font=60,code=pressKey("delete"),hide=function()return #sceneTemp.input==0 end}),
+		newButton({name="back",		x=1190,	y=90,w=120,h=120,color="white",font=40,code=BACK}),
+		newKeyboard({name="kb",		x=40,	y=280,w=1200,h=420,hide=function()return sceneTemp.select end}),
 	},
 	staff={
 		newButton({name="back",		x=1140,	y=640,w=170,h=80,color="white",font=40,code=BACK}),

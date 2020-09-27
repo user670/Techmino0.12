@@ -214,6 +214,7 @@ drawableText={
 	custom=T(80),basic=T(35),rule=T(35),field=T(35),mission=T(35),
 	setting_game=T(80),setting_video=T(80),setting_sound=T(80),
 	setting_control=T(70),setting_skin=T(70),
+	dict=T(70),
 	preview=T(40),
 	keyboard=T(25),joystick=T(25),
 	ctrlSetHelp=T(30),
