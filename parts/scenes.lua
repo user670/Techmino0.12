@@ -241,10 +241,10 @@ do--p15
 		local S=sceneTemp
 		if S.state<2 then
 			if not key then
+				x,y=int((x-320)/160)+1,int((y-40)/160)+1
 				if S.pathVis then
 					sysFX.newRipple(.16,x,y,10)
 				end
-				x,y=int((x-320)/160)+1,int((y-40)/160)+1
 			end
 			local b=S.board
 			local moves=0
@@ -274,7 +274,6 @@ do--p15
 				end
 			end
 			if moves>0 then
-				SFX.play("move")
 				S.move=S.move+moves
 				if S.state==0 then
 					S.state=1
@@ -296,6 +295,7 @@ do--p15
 					end
 					SFX.play("win")
 				end
+				SFX.play("move")
 			end
 		end
 	end
@@ -538,11 +538,11 @@ do--schulte_G
 						sysFX.newShade(.3,.6,.8,1,320+640/R*X,40+640/R*Y,640/R,640/R)
 					end
 				else
-					SFX.play("finesseError")
 					S.error=S.error+1
 					if S.tapFX then
 						sysFX.newShade(.5,1,.4,.5,320+640/R*X,40+640/R*Y,640/R,640/R)
 					end
+					SFX.play("finesseError")
 				end
 			end
 		end
@@ -997,12 +997,12 @@ do--mode
 			local SEL=onMode(x,y)
 			if _~=SEL then
 				if SEL then
-					SFX.play("click")
 					cam.moving=true
 					_=Modes[SEL]
 					cam.x=_.x*cam.k+180
 					cam.y=_.y*cam.k
 					cam.sel=SEL
+					SFX.play("click")
 				else
 					cam.sel=nil
 					cam.x=cam.x-180
