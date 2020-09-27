@@ -24,7 +24,7 @@ Attack system:
 		Non-Spin Techrash/Techrash+ sends (lines cleared) attack,
 		  - B2B sends extra 1 attack,
 		  - B2B2B sends 50% more attack and +1 extra blocking.
-		
+
 	Special line clears will increase B2B gauge, making later special line clears have B2B or B2B2B bonus (see below)
 	Half Perfect Clear (a Perfect Clear "with blocks left below". If it's an I clearing 1 line, then the remaining blocks must not be player-placed): Attack +2, Extra Blocking +2
 	Perfect Clear: half all damage above, then +8 to +20 attack (increases within a round by +2 per Perfect Clear) and +2 extra blocking. (note: if lines cleared in this round >4, then B2B gauge will be filled)

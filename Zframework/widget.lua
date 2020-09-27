@@ -509,7 +509,7 @@ function WIDGET.newImage(D)
 		oy=		D.oy,
 		hide=	D.hide,
 	}
-	for k,v in next,image do _[k]=v end 
+	for k,v in next,image do _[k]=v end
 	setmetatable(_,widgetMetatable)
 	return _
 end

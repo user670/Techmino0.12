@@ -2341,7 +2341,7 @@ do--player.drop(P)--Place piece
 
 			--PC/HPC bonus
 			C.pc,C.hpc=false,false
-			if clear and #P.field==0 then	
+			if clear and #P.field==0 then
 				P:showText(text.PC,0,-80,50,"flicker")
 				atk=atk*.5+min(8+STAT.pc*2,20)
 				exblock=exblock+2
@@ -2739,7 +2739,7 @@ function player.lose(P)
 		else
 			P.badge=-1
 		end
-		
+
 		freshMostBadge()
 		freshMostDangerous()
 		if #players.alive==royaleData.stage[game.stage]then
