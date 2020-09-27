@@ -920,6 +920,21 @@ do--main
 	end
 end
 do--mode
+	mapCam={
+		sel=nil,--Selected mode ID
+	
+		--Basic paragrams
+		x=0,y=0,k=1,--Camera pos/k
+		x1=0,y1=0,k1=1,--Camera pos/k shown
+	
+		--If controlling with key
+		keyCtrl=false,
+	
+		--For auto zooming when enter/leave scene
+		zoomMethod=nil,
+		zoomK=nil,
+	}
+	local mapCam=mapCam
 	local touchDist=nil
 	function sceneInit.mode(org)
 		BG.set("space")
