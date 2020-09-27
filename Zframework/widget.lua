@@ -392,6 +392,77 @@ function selector:getInfo()
 	return format("x=%d,y=%d,w=%d",self.x,self.y,self.w)
 end
 
+local keyboardNames={--15*5 keys
+	"ESC","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12","","Del",
+	"1","2","3","4","5","6","7","8","9","0","-","=","","<X","<X",
+	"Q","W","E","R","T","Y","U","I","O","P","[","]","Rtn","Rtn","PgUp",
+	"A","S","D","F","G","H","J","K","L","",";","'","/","↑","PgDn",
+	"","Z","X","C","V","B","N","M","___","___",",",".","←","↓","→",
+}
+local keyboardKeys={
+	"escape","f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12",nil,"delete",
+	"1","2","3","4","5","6","7","8","9","0","-","=",nil,"backspace","backspace",
+	"q","w","e","r","t","y","u","i","o","p","[","]","return","return","pgup",
+	"a","s","d","f","g","h","j","k","l",nil,";","'","/","up","pgdown",
+	nil,"z","x","c","v","b","n","m","space","space",",",".","left","down","right",
+}
+local keyboard={
+	type="keyboard",
+	ATV=0,--Activating time(0~120)
+}
+function keyboard:reset()
+	self.ATV=0
+end
+function keyboard:isAbove(x,y)
+	return
+		x>self.x and
+		x<self.x+self.w and
+		y>self.y and
+		y<self.y+self.h
+end
+function keyboard:getCenter()
+	return self.x+self.w*.5,self.y+self.h*.5
+end
+function keyboard:update()
+	local ATV=self.ATV
+	if WIDGET.sel==self then
+		self.ATV=120
+	else
+		if ATV>0 then self.ATV=ATV-1 end
+	end
+end
+function keyboard:draw()
+	local x,y,w,h=self.x,self.y,self.w,self.h
+	gc.push("transform")
+	gc.translate(x,y)
+	gc.scale(w/1200,h/400)
+
+	gc.setColor(0,0,0,.4)
+	gc.rectangle("fill",0,0,1200,400)
+
+	gc.setColor(1,1,1,.8+self.ATV/60)
+	gc.setLineWidth(3)
+	for x=0,1200,80 do
+		gc.line(x,0,x,400)
+	end
+	for y=0,400,80 do
+		gc.line(0,y,1200,y)
+	end
+
+	for y=0,4 do
+		for x=1,15 do
+			local s=keyboardNames[15*y+x]
+			local f=55-7*#s
+			setFont(f)
+			mStr(s,80*x-40,80*y+38-f*.7)
+		end
+	end
+	gc.pop()
+end
+function keyboard:getInfo()
+	return"This is a virtual keyboard"
+end
+
 local WIDGET={}
 WIDGET.active={}--Table contains all active widgets
 WIDGET.sel=nil--Selected widget
@@ -591,6 +662,20 @@ function WIDGET.newSelector(D)
 	setmetatable(_,widgetMetatable)
 	return _
 end
+function WIDGET.newKeyboard(D)
+	local _={
+		x=		D.x,
+		y=		D.y,
+		w=		D.w,
+		h=		D.h,
+		hide=	D.hide,
+
+		resCtr={},
+	}
+	for k,v in next,keyboard do _[k]=v end
+	setmetatable(_,widgetMetatable)
+	return _
+end
 
 function WIDGET.moveCursor(x,y)
 	WIDGET.sel=nil
@@ -635,6 +720,15 @@ function WIDGET.press(x,y)
 				W.select=s
 				W.selText=W.list[s]
 				SFX.play("prerotate")
+			end
+		end
+	elseif W.type=="keyboard"then
+		if x then
+			x,y=int((x-W.x)/W.w*15)+1,int((y-W.y)/W.h*5)
+			local k=keyboardKeys[15*y+x]
+			if k then
+				sysFX.newShade(.4,1,1,1,W.x+(x-1)/15*W.w,W.y+y/5*W.h,W.w/15,W.h/5)
+				love.keypressed(k)
 			end
 		end
 	end
