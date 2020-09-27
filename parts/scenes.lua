@@ -2638,13 +2638,15 @@ do--setting_key
 				SCN.back()
 			end
 		elseif S.kS then
-			for y=1,20 do
-				if keyMap[1][y]==key then keyMap[1][y]=""break end
-				if keyMap[2][y]==key then keyMap[2][y]=""break end
+			if key~="\\"then
+				for y=1,20 do
+					if keyMap[1][y]==key then keyMap[1][y]=""break end
+					if keyMap[2][y]==key then keyMap[2][y]=""break end
+				end
+				keyMap[S.board][S.kb]=key
+				S.kS=false
+				SFX.play("reach",.5)
 			end
-			keyMap[S.board][S.kb]=key
-			SFX.play("reach",.5)
-			S.kS=false
 		elseif key=="return"or key=="space"then
 			S.kS=true
 			SFX.play("lock",.5)
