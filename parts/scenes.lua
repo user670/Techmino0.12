@@ -3139,6 +3139,9 @@ do--debug
 			reset=false,
 		}
 	end
+	function keyDown.debug(key)
+		LOG.print("keyPress: ["..key.."]")
+	end
 end
 do--quit
 	function sceneInit.quit()
