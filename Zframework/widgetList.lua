@@ -618,10 +618,10 @@ local Widgets={
 		newButton({name="back",		x=640,	y=600,w=200,h=80,color="white",font=35,code=BACK}),
 	},
 	dict={
-		newKey({name="del",			x=910,	y=90,w=120,h=120,color="white",font=60,code=pressKey("backspace"),hide=function()return #sceneTemp.input==0 end}),
-		newKey({name="reset",		x=1050,	y=90,w=120,h=120,color="white",font=60,code=pressKey("delete"),hide=function()return #sceneTemp.input==0 end}),
+		newKey({name="hideKB",		x=1050,	y=90,w=120,h=120,color="white",font=40,code=pressKey("kb"),hide=function()return not sceneTemp.select end}),
 		newButton({name="back",		x=1190,	y=90,w=120,h=120,color="white",font=40,code=BACK}),
 		newKeyboard({name="kb",		x=40,	y=280,w=1200,h=420,hide=function()return sceneTemp.select end}),
+		newKeyboard({name="kb",		x=400,	y=360,w=840,h=340,hide=function()return not sceneTemp.select or sceneTemp.hideKB end}),
 	},
 	staff={
 		newButton({name="back",		x=1140,	y=640,w=170,h=80,color="white",font=40,code=BACK}),

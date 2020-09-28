@@ -437,8 +437,7 @@ local langList={
 				back="返回",
 			},
 			dict={
-				del="<X",
-				reset="R",
+				hideKB="键盘",
 				back="返回",
 			},
 			staff={
@@ -977,8 +976,7 @@ local langList={
 				back="返回",
 			},
 			dict={
-				del="<X",
-				reset="R",
+				hideKB="键盘",
 				back="返回",
 			},
 			staff={
@@ -1514,8 +1512,7 @@ local langList={
 				back="Back",
 			},
 			dict={
-				del="<X",
-				reset="R",
+				hideKB="Keyboard",
 				back="Back",
 			},
 			staff={
@@ -2050,8 +2047,7 @@ local langList={
 				back="X",
 			},
 			dict={
-				del="<X",
-				reset="R",
+				hideKB="□□□",
 				back="X",
 			},
 			staff={
@@ -2587,8 +2583,7 @@ local langList={
 				back="返回",
 			},
 			dict={
-				del="<X",
-				reset="R",
+				hideKB="键盘",
 				back="返回",
 			},
 			staff={

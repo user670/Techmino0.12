@@ -781,17 +781,17 @@ do--intro
 		end
 		local notice=HTTPrequest("http://47.103.200.40/api/notice.php")
 		if notice then
-			LOG.print(notice)
+			LOG.print(notice,"message")
 		else
 			LOG.print(text.getNoticeFail,"warn")
 		end
 		local newVersion=HTTPrequest("http://47.103.200.40/api/getNewVersion.php")
 		if not newVersion then
-			LOG.print(text.getVersionFail)
+			LOG.print(text.getVersionFail,"warn")
 		elseif newVersion~=gameVersion then
 			LOG.print(string.gsub(text.versionIsOld,"$1",newVersion),"warn")
 		else
-			LOG.print(text.versionIsNew)
+			LOG.print(text.versionIsNew,"message")
 		end
 	end
 
@@ -2992,6 +2992,7 @@ do--dict
 			select=nil,
 			title=nil,
 			lastSearch=nil,
+			hideKB=1 or system~="Windows",
 		}
 		BG.set("rainbow")
 	end
@@ -3037,6 +3038,8 @@ do--dict
 			if S.select and S.select<#S.result and S.select<15 then
 				S.select=S.select+1
 			end
+		elseif key=="kb"then
+			S.hideKB=not S.hideKB
 		elseif key=="delete"then
 			if #S.input>0 then
 				S.input=""
@@ -3051,7 +3054,13 @@ do--dict
 				S.lastSearch=nil
 			end
 		elseif key=="escape"then
-			SCN.back()
+			if #S.select>0 then
+				S.input=""
+				S.select=nil
+				S.lastSearch=nil
+			else
+				SCN.back()
+			end
 		elseif key=="return"then
 			if #S.input<2 then
 				S.input=""

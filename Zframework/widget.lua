@@ -408,11 +408,8 @@ local keyboardKeys={
 }
 local keyboard={
 	type="keyboard",
-	ATV=0,--Activating time(0~120)
 }
-function keyboard:reset()
-	self.ATV=0
-end
+function keyboard:reset()end
 function keyboard:isAbove(x,y)
 	return
 		x>self.x and
@@ -423,44 +420,37 @@ end
 function keyboard:getCenter()
 	return self.x+self.w*.5,self.y+self.h*.5
 end
-function keyboard:update()
-	local ATV=self.ATV
-	if WIDGET.sel==self then
-		self.ATV=120
-	else
-		if ATV>0 then self.ATV=ATV-1 end
-	end
-end
+function keyboard:update()end
 function keyboard:draw()
 	local x,y,w,h=self.x,self.y,self.w,self.h
-	gc.push("transform")
 	gc.translate(x,y)
-	gc.scale(w/1200,h/400)
 
 	gc.setColor(0,0,0,.4)
-	gc.rectangle("fill",0,0,1200,400)
+	gc.rectangle("fill",0,0,w,h)
 
-	gc.setColor(1,1,1,.8+self.ATV/60)
+	gc.setColor(1,1,1)
 	gc.setLineWidth(3)
-	for x=0,1200,80 do
-		gc.line(x,0,x,400)
+	for x=0,w,w/15 do
+		gc.line(x,0,x,h)
 	end
-	for y=0,400,80 do
-		gc.line(0,y,1200,y)
+	for y=0,h,h/5 do
+		gc.line(0,y,w,y)
 	end
 
-	for y=0,4 do
-		for x=1,15 do
-			local s=keyboardNames[15*y+x]
-			local f=55-7*#s
+	local mStr=mStr
+	for i=0,4 do
+		for j=1,15 do
+			local s=keyboardNames[15*i+j]
+			local f=int((55-7*#s)*w/1200)
 			setFont(f)
-			mStr(s,80*x-40,80*y+38-f*.7)
+			mStr(s,(j-.5)*w/15,(i+.5)*h/5-f*.7)
 		end
 	end
-	gc.pop()
+
+	gc.translate(-x,-y)
 end
 function keyboard:getInfo()
-	return"This is a virtual keyboard"
+	return format("x=%d,y=%d,w=%d,h=%d",self.x,self.y,self.w,self.h)
 end
 
 local WIDGET={}
