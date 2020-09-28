@@ -58,7 +58,7 @@ function LOG.print(text,T,C)--text,type/time,color
 		his=true
 		time=210
 	elseif T=="message"then
-		C=C or color.green
+		C=C or color.sky
 		his=true
 	elseif type(T)=="number"then
 		C=C or color.white
