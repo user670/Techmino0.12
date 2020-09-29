@@ -3050,7 +3050,7 @@ do--dict
 				S.lastSearch=nil
 			end
 		elseif key=="escape"then
-			if #S.select>0 then
+			if #S.input>0 then
 				S.input=""
 				S.select=nil
 				S.lastSearch=nil
