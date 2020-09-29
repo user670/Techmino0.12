@@ -636,8 +636,7 @@ local Widgets={
 		newButton({name="back",		x=640,	y=620,w=200,h=80,color="white",font=35,code=BACK}),
 	},
 	debug={
-		newButton({name="copyLog",	x=300,y=120,w=300,h=100,color="green",	font=30,code=function()LOG.copy()end}),
-		newButton({name="scrInfo",	x=640,y=120,w=300,h=100,color="green",	font=30,code=function()
+		newButton({name="scrInfo",	x=300,y=120,w=300,h=100,color="green",	font=30,code=function()
 			LOG.print("Screen Info:")
 			LOG.print("x y: "..scr.x.." "..scr.y)
 			LOG.print("w h: "..scr.w.." "..scr.h)
