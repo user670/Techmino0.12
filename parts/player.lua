@@ -2624,7 +2624,7 @@ function player.die(P)--Called when win/lose,not really die!
 	P.update=Pupdate_dead
 	P.waiting=1e99
 	P.b2b=0
-	TASK.clear(P)
+	for i=1,#P.tasks do rem(P.tasks)end
 	for i=1,#P.atkBuffer do
 		P.atkBuffer[i].sent=true
 		P.atkBuffer[i].time=0
@@ -2915,7 +2915,6 @@ function player.act.func(P)
 end
 function player.act.restart(P)
 	if game.frame<240 or game.result then
-		TASK.removeTask_code(TICK.autoPause)
 		resetPartGameData()
 	else
 		LOG.print(text.holdR,20,color.orange)

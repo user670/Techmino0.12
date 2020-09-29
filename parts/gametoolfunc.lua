@@ -468,6 +468,7 @@ function resetGameData()
 	collectgarbage()
 end
 function resetPartGameData(replaying)
+	TASK.removeTask_code(TICK.autoPause)
 	if players[1]and not game.replaying then
 		mergeStat(stat,players[1].stat)
 	end

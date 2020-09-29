@@ -2105,7 +2105,6 @@ do--play
 		elseif P1.keyPressing[10]then
 			restartCount=restartCount+1
 			if restartCount>20 then
-				TASK.clear("play")
 				resetPartGameData()
 				return
 			end
@@ -2337,7 +2336,6 @@ do--pause
 			mergeStat(stat,players[1].stat)
 		end
 		FILE.saveData()
-		TASK.clear("play")
 	end
 
 	function keyDown.pause(key)
@@ -2348,11 +2346,9 @@ do--pause
 		elseif key=="s"then
 			SCN.go("setting_sound")
 		elseif key=="r"then
-			TASK.clear("play")
 			resetGameData()
 			SCN.swapTo("play","none")
 		elseif key=="p"and(game.result or game.replaying)and #players==1 then
-			TASK.removeTask_code(TICK.autoPause)
 			resetPartGameData(true)
 			SCN.swapTo("play","none")
 		end
