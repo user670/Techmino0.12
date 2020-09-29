@@ -7,7 +7,6 @@ local debugMesHistory={
 	"Version: "..gameVersion,
 	os.date("Launched at %Y/%m/%d %H:%M"),
 }
-local debugMesFloat=0
 local LOG={}
 function LOG.update()
 	if debugMesList[1]then
@@ -19,16 +18,8 @@ function LOG.update()
 				M.time=M.time-1
 				if M.time==0 then
 					rem(debugMesList,i)
-					if not debugMesList[1]then
-						debugMesFloat=0
-					elseif i==1 then
-						debugMesFloat=debugMesFloat
-					end
 				end
 			end
-		end
-		if debugMesFloat>0 then
-			debugMesFloat=int(debugMesFloat*.9)
 		end
 	end
 end
@@ -41,7 +32,7 @@ function LOG.draw()
 			local M=debugMesList[i]
 			local t=M.time
 			gc.setColor(M.r,M.g,M.b,M.blink>0 and int(M.blink/3)%2 or min(t/26,1))
-			gc.print(M.text,10+(20-min(t,20))^1.5/4,25*i*k+debugMesFloat)
+			gc.print(M.text,10+(20-min(t,20))^1.5/4,25*i*k)
 		end
 		gc.pop()
 	end
